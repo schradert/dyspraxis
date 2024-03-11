@@ -1,0 +1,4 @@
+*.swp
+.direnv/
+/.pre-commit-config.yaml
+target/
