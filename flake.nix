@@ -14,11 +14,22 @@
 
     dream2nix.url = github:nix-community/dream2nix;
     dream2nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    zig.url = github:mitchellh/zig-overlay;
+    zig.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs:
-    with inputs;
-      flake-parts.lib.mkFlake {inherit inputs;} {
-        imports = [./nnfs ./pre-commit.nix];
-        systems = import systems;
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [./nnfs ./ziglings ./pre-commit.nix];
+      systems = import inputs.systems;
+      perSystem = {
+        pkgs,
+        self',
+        ...
+      }: {
+        devShells.default = pkgs.mkShell {
+          inputsFrom = builtins.attrValues (removeAttrs self'.devShells ["default"]);
+        };
       };
+    };
 }
