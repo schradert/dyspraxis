@@ -17,20 +17,13 @@
 
     zig.url = github:mitchellh/zig-overlay;
     zig.inputs.nixpkgs.follows = "nixpkgs";
+
+    imports.url = github:schradert/nix-imports;
   };
   outputs = inputs:
     with inputs;
       flake-parts.lib.mkFlake {inherit inputs;} {
-        imports = [./nix];
+        imports = imports.lib.imports.everything [./dev ./projects];
         systems = import systems;
-        perSystem = {pkgs, ...}: {
-          packages = dream2nix.lib.importPackages {
-            projectRoot = ./.;
-            projectRootFile = "flake.nix";
-            packagesDir = ./projects;
-            packageSets.nixpkgs = pkgs;
-            packageSets.inputs = inputs;
-          };
-        };
       };
 }
