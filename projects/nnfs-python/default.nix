@@ -28,4 +28,12 @@ in {
   mkDerivation.passthru.pre-commit.pre-commit.settings.hooks.ruff.enable = true;
   pdm.pyproject = ./pyproject.toml;
   pdm.lockfile = ./pdm.lock;
+  # The existing devShell doesn't work so we must forcefully override
+  # config.deps.pdm should be listed after python so its own python doesn't override our package set
+  public.devShell = lib.mkForce (config.deps.mkShell {
+    packages = [
+      (config.deps.python.withPackages (ps: with config.mkDerivation; lib.trivial.concat propagatedBuildInputs nativeCheckInputs))
+      config.deps.pdm
+    ];
+  });
 }

@@ -9,7 +9,7 @@ def test_three_neurons():
     outputs = [4.8, 1.21, 2.385]
 
     result = [
-        sum(i*w for i, w in zip(inputs, neuron_weights)) + neuron_bias
+        sum(i * w for i, w in zip(inputs, neuron_weights)) + neuron_bias
         for neuron_weights, neuron_bias in zip(weights, biases)
     ]
     assert result == outputs

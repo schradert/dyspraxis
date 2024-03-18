@@ -17,8 +17,6 @@
           (builtins.attrValues (removeAttrs self'.devShells ["default"]))
           (with attrsets; mapAttrsToList (_: pkg: pkg.devShell or []) self'.packages)
         ];
-      # TODO why isn't this already provided the pdm module??? and why can't I define a new one that actually adds this dependency to the development shell
-      packages = [pkgs.pdm];
     };
   };
 }
