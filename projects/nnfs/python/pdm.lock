@@ -5,7 +5,7 @@
 groups = ["default", "test"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:2b49cf99bb4362886cc8fb5c48b34377f91af94956e2c72c4707f3dcd3d81e70"
+content_hash = "sha256:8c24df527a6d00ad069379d39aa7d3003eab74d66cd7dd784f71ac8320c4e586"
 
 [[package]]
 name = "colorama"
@@ -193,6 +193,20 @@ files = [
     {file = "matplotlib-3.8.3-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e9764df0e8778f06414b9d281a75235c1e85071f64bb5d71564b97c1306a2afc"},
     {file = "matplotlib-3.8.3-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:5e431a09e6fab4012b01fc155db0ce6dccacdbabe8198197f523a4ef4805eb26"},
     {file = "matplotlib-3.8.3.tar.gz", hash = "sha256:7b416239e9ae38be54b028abbf9048aff5054a9aba5416bef0bd17f9162ce161"},
+]
+
+[[package]]
+name = "nnfs"
+version = "0.5.1"
+requires_python = ">=3"
+summary = "Package related to the Neural Networks from Scratch in Python book"
+groups = ["default"]
+dependencies = [
+    "numpy",
+]
+files = [
+    {file = "nnfs-0.5.1-py3-none-any.whl", hash = "sha256:fd04796da8e8f40a4dff9ad995a99944b8f0d68966d59e3e5d133659c7264c1f"},
+    {file = "nnfs-0.5.1.tar.gz", hash = "sha256:7e1ba80bdfb89d9909758ba7546f1f73c5f6b58c1d5899649ac488c2a4833213"},
 ]
 
 [[package]]
