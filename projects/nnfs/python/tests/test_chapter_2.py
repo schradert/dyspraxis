@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 def test_three_neurons():
     inputs = [1, 2, 3, 2.5]
     weights = [
@@ -9,7 +11,7 @@ def test_three_neurons():
     outputs = [4.8, 1.21, 2.385]
 
     result = [
-        sum(i * w for i, w in zip(inputs, neuron_weights)) + neuron_bias
+        float(sum(Decimal(i) * Decimal(w) for i, w in zip(inputs, neuron_weights)) + Decimal(neuron_bias))
         for neuron_weights, neuron_bias in zip(weights, biases)
     ]
     assert result == outputs
