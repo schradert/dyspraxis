@@ -1,5 +1,5 @@
 {
-  flake.dream2nixModules.nnfs-python = {
+  flake.dream2nixModules.nnfspy = {
     config,
     dream2nix,
     lib,
@@ -13,19 +13,17 @@
       inherit (nixpkgs.python312.pkgs) python pytestCheckHook;
     };
     mkDerivation.src = ./.;
-    mkDerivation.nativeCheckInputs =
-      []
-      ++ lib.lists.flatten [
-        config.deps.pytestCheckHook
-        (pipe config.groups.test.packages [
-          attrValues
-          (map (pkg:
-            pipe pkg [
-              attrValues
-              (map (getAttr "public"))
-            ]))
-        ])
-      ];
+    mkDerivation.nativeCheckInputs = lib.lists.flatten [
+      config.deps.pytestCheckHook
+      (pipe config.groups.test.packages [
+        attrValues
+        (map (pkg:
+          pipe pkg [
+            attrValues
+            (map (getAttr "public"))
+          ]))
+      ])
+    ];
     pdm.pyproject = ./pyproject.toml;
     pdm.lockfile = ./pdm.lock;
     # The existing devShell doesn't work so we must forcefully override
