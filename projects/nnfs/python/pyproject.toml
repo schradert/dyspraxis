@@ -29,3 +29,6 @@ extraPaths = ["__pypackages__/3.12/lib/"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F403"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
