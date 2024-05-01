@@ -1,6 +1,7 @@
 {inputs, ...}: {
   flake.overlays.zig = inputs.zig.overlays.default;
-  flake.dream2nixModules.ziglings = {
+  perSystem.pre-commit.settings.excludes = ["projects/ziglings/.+(?!\.nix)$"];
+  perSystem.canivete.dream2nix.packages.ziglings.module = {
     config,
     dream2nix,
     ...
@@ -26,5 +27,6 @@
     mkDerivation.src = ./.;
     mkDerivation.nativeBuildInputs = [config.deps.zig.hook];
     public.devShell = with config.deps; mkShell {packages = [zig];};
+    paths.package = ./.;
   };
 }
